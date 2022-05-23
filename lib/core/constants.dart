@@ -14,3 +14,16 @@ const kHeight20 = SizedBox(
 
 // BorderRadius
 final BorderRadius kRadius10 = BorderRadius.circular(10);
+
+// Images
+const kMainImage =
+    'https://www.themoviedb.org/t/p/original/nd9OGsvLq7SB0LmBGgPjh8D2765.jpg';
+
+const kMainLogo =
+    'https://iconape.com/wp-content/files/wi/83744/png/netflix-icon-2016-1.png';
+
+// TextStyle
+TextStyle kHomeTitleText = const TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+);
