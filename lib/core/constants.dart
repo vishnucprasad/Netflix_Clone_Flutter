@@ -14,6 +14,7 @@ const kHeight20 = SizedBox(
 
 // BorderRadius
 final BorderRadius kRadius10 = BorderRadius.circular(10);
+final BorderRadius kRadius30 = BorderRadius.circular(30);
 
 // Images
 const kMainImage =
