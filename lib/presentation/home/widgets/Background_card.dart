@@ -32,11 +32,15 @@ class BackgroundCard extends StatelessWidget {
                 const CustomButtonWidget(
                   icon: Icons.add,
                   text: 'My List',
+                  iconSize: 25,
+                  textSize: 16,
                 ),
                 _playButton(),
                 const CustomButtonWidget(
                   icon: Icons.info_outline,
                   text: 'Info',
+                  iconSize: 25,
+                  textSize: 16,
                 ),
               ],
             ),

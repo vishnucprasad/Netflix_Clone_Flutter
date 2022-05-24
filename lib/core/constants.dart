@@ -20,6 +20,9 @@ final BorderRadius kRadius30 = BorderRadius.circular(30);
 const kMainImage =
     'https://www.themoviedb.org/t/p/original/nd9OGsvLq7SB0LmBGgPjh8D2765.jpg';
 
+const kNewaAndHotImage =
+    'https://www.themoviedb.org/t/p/original/3hquzXLLNINWFtIEDUIcGSmQBK.jpg';
+
 const kMainLogo =
     'https://iconape.com/wp-content/files/wi/83744/png/netflix-icon-2016-1.png';
 

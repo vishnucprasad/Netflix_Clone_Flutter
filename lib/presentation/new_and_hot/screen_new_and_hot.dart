@@ -1,7 +1,8 @@
+import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
-import 'package:netflix_clone/presentation/widgets/app_bar_widget.dart';
+import 'package:netflix_clone/presentation/new_and_hot/widgets/coming_soon_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({Key? key}) : super(key: key);
@@ -34,19 +35,21 @@ class ScreenNewAndHot extends StatelessWidget {
               ),
               kWidth,
             ],
-            bottom: TabBar(
+            bottom: const TabBar(
               isScrollable: true,
               labelColor: kBlackColor,
+              labelPadding: EdgeInsets.symmetric(horizontal: 30),
               unselectedLabelColor: kWhiteColor,
-              labelStyle: const TextStyle(
-                fontSize: 16,
+              labelStyle: TextStyle(
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
-              indicator: BoxDecoration(
-                color: kWhiteColor,
-                borderRadius: kRadius30,
+              indicator: BubbleTabIndicator(
+                indicatorHeight: 30,
+                indicatorColor: kWhiteColor,
+                tabBarIndicatorSize: TabBarIndicatorSize.tab,
               ),
-              tabs: const [
+              tabs: [
                 Tab(
                   text: '🍿 Coming Soon',
                 ),
@@ -60,17 +63,22 @@ class ScreenNewAndHot extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            _buildTabBarView('Coming Soon'),
-            _buildTabBarView("Everyone's Watching"),
+            _buildComingSoon(),
+            _buildEveryonesWatching(),
           ],
         ),
       ),
     );
   }
 
-  _buildTabBarView(String title) {
-    return Center(
-      child: Text(title),
+  Widget _buildComingSoon() {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (BuildContext context, index) => const ComingSoonWidget(),
     );
+  }
+
+  Widget _buildEveryonesWatching() {
+    return const SizedBox();
   }
 }
