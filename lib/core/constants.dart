@@ -21,6 +21,8 @@ final BorderRadius kRadius10 = BorderRadius.circular(10);
 final BorderRadius kRadius30 = BorderRadius.circular(30);
 
 // Images
+const imageAppendUrl = 'https://image.tmdb.org/t/p/w500';
+
 const kMainImage =
     'https://www.themoviedb.org/t/p/original/nd9OGsvLq7SB0LmBGgPjh8D2765.jpg';
 

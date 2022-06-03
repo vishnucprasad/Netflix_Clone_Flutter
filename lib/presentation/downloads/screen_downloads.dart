@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_clone/application/downloads/downloads_bloc.dart';
 import 'package:netflix_clone/core/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
 import 'package:netflix_clone/presentation/widgets/app_bar_widget.dart';
@@ -35,15 +37,15 @@ class ScreenDownloads extends StatelessWidget {
 }
 
 class Section2 extends StatelessWidget {
-  Section2({Key? key}) : super(key: key);
-  final List imageList = [
-    'https://www.themoviedb.org/t/p/original/4wobXQ8VLfCHvgbevNMy8Rxvo41.jpg',
-    'https://www.themoviedb.org/t/p/w220_and_h330_face/ncXklBeNi7X7OETqmDVEgaf8ItQ.jpg',
-    'https://www.themoviedb.org/t/p/w220_and_h330_face/4hqtjslVCaDVgblg7iCtGIy7exO.jpg',
-  ];
+  const Section2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<DownloadsBloc>(context).add(
+        const DownloadsEvent.getDownloadsImage(),
+      );
+    });
     final Size size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -66,34 +68,46 @@ class Section2 extends StatelessWidget {
           ),
         ),
         kHeight,
-        SizedBox(
-          width: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: size.width * 0.3,
-                backgroundColor: Colors.grey.withOpacity(0.3),
-              ),
-              DownloadsImageWidget(
-                image: imageList[0],
-                angle: 20,
-                margin: const EdgeInsets.only(left: 150, bottom: 20),
-                size: Size(size.width * 0.28, size.height * 0.18),
-              ),
-              DownloadsImageWidget(
-                image: imageList[2],
-                angle: 340,
-                margin: const EdgeInsets.only(right: 150, bottom: 20),
-                size: Size(size.width * 0.28, size.height * 0.18),
-              ),
-              DownloadsImageWidget(
-                image: imageList[1],
-                margin: const EdgeInsets.only(top: 15),
-                size: Size(size.width * 0.32, size.height * 0.21),
-              ),
-            ],
-          ),
+        BlocBuilder<DownloadsBloc, DownloadsState>(
+          builder: (context, state) {
+            return SizedBox(
+              width: size.width,
+              height: size.width * 0.7,
+              child: state.isLoading
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircleAvatar(
+                          radius: size.width * 0.3,
+                          backgroundColor: Colors.grey.withOpacity(0.3),
+                        ),
+                        DownloadsImageWidget(
+                          image:
+                              '$imageAppendUrl${state.downloads[0].posterPath}',
+                          angle: 20,
+                          margin: const EdgeInsets.only(left: 150, bottom: 20),
+                          size: Size(size.width * 0.28, size.height * 0.18),
+                        ),
+                        DownloadsImageWidget(
+                          image:
+                              '$imageAppendUrl${state.downloads[1].posterPath}',
+                          angle: 340,
+                          margin: const EdgeInsets.only(right: 150, bottom: 20),
+                          size: Size(size.width * 0.28, size.height * 0.18),
+                        ),
+                        DownloadsImageWidget(
+                          image:
+                              '$imageAppendUrl${state.downloads[2].posterPath}',
+                          margin: const EdgeInsets.only(top: 15),
+                          size: Size(size.width * 0.32, size.height * 0.21),
+                        ),
+                      ],
+                    ),
+            );
+          },
         ),
       ],
     );
