@@ -1,5 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors.dart';
+import 'package:netflix_clone/core/constants.dart';
+import 'package:netflix_clone/domain/downloads/models/downloads.dart';
+
+class VideoListItemInheritedWidget extends InheritedWidget {
+  final Widget widget;
+  final Downloads movieData;
+
+  const VideoListItemInheritedWidget({
+    Key? key,
+    required this.widget,
+    required this.movieData,
+  }) : super(key: key, child: widget);
+
+  @override
+  bool updateShouldNotify(covariant VideoListItemInheritedWidget oldWidget) {
+    return oldWidget.movieData != movieData;
+  }
+
+  static VideoListItemInheritedWidget? of(BuildContext context) {
+    return context
+        .dependOnInheritedWidgetOfExactType<VideoListItemInheritedWidget>();
+  }
+}
 
 class VideoListItem extends StatelessWidget {
   final int index;
@@ -7,6 +30,8 @@ class VideoListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final posterPath =
+        VideoListItemInheritedWidget.of(context)?.movieData.posterPath;
     return Stack(
       children: [
         Container(
@@ -26,7 +51,7 @@ class VideoListItem extends StatelessWidget {
                   backgroundColor: Colors.black.withOpacity(0.8),
                   child: IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.volume_off,
                       color: kWhiteColor,
                       size: 30,
@@ -37,26 +62,28 @@ class VideoListItem extends StatelessWidget {
                 // Right side
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
+                  children: [
                     CircleAvatar(
                       radius: 30,
-                      backgroundImage: NetworkImage(
-                        'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ccIaLa4TLEu9tHLkuomdy31deNr.jpg',
-                      ),
+                      backgroundImage: posterPath == null
+                          ? null
+                          : NetworkImage(
+                              '$imageAppendUrl$posterPath',
+                            ),
                     ),
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                       icon: Icons.emoji_emotions,
                       title: 'Lol',
                     ),
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                       icon: Icons.add,
                       title: 'My List',
                     ),
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                       icon: Icons.send,
                       title: 'Share',
                     ),
-                    VideoActionsWidget(
+                    const VideoActionsWidget(
                       icon: Icons.play_arrow,
                       title: 'Play',
                     ),

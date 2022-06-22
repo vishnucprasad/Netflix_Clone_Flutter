@@ -38,19 +38,19 @@ mixin _$SearchEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(SearchMovie value) searchMovie,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(SearchMovie value)? searchMovie,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,7 +144,7 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(SearchMovie value) searchMovie,
   }) {
     return initialize(this);
   }
@@ -153,7 +153,7 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(SearchMovie value)? searchMovie,
   }) {
     return initialize?.call(this);
   }
@@ -162,7 +162,7 @@ class _$Initialize implements Initialize {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -177,28 +177,28 @@ abstract class Initialize implements SearchEvent {
 }
 
 /// @nodoc
-abstract class _$$_SearchMovieCopyWith<$Res> {
-  factory _$$_SearchMovieCopyWith(
-          _$_SearchMovie value, $Res Function(_$_SearchMovie) then) =
-      __$$_SearchMovieCopyWithImpl<$Res>;
+abstract class _$$SearchMovieCopyWith<$Res> {
+  factory _$$SearchMovieCopyWith(
+          _$SearchMovie value, $Res Function(_$SearchMovie) then) =
+      __$$SearchMovieCopyWithImpl<$Res>;
   $Res call({String movieQuery});
 }
 
 /// @nodoc
-class __$$_SearchMovieCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
-    implements _$$_SearchMovieCopyWith<$Res> {
-  __$$_SearchMovieCopyWithImpl(
-      _$_SearchMovie _value, $Res Function(_$_SearchMovie) _then)
-      : super(_value, (v) => _then(v as _$_SearchMovie));
+class __$$SearchMovieCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
+    implements _$$SearchMovieCopyWith<$Res> {
+  __$$SearchMovieCopyWithImpl(
+      _$SearchMovie _value, $Res Function(_$SearchMovie) _then)
+      : super(_value, (v) => _then(v as _$SearchMovie));
 
   @override
-  _$_SearchMovie get _value => super._value as _$_SearchMovie;
+  _$SearchMovie get _value => super._value as _$SearchMovie;
 
   @override
   $Res call({
     Object? movieQuery = freezed,
   }) {
-    return _then(_$_SearchMovie(
+    return _then(_$SearchMovie(
       movieQuery: movieQuery == freezed
           ? _value.movieQuery
           : movieQuery // ignore: cast_nullable_to_non_nullable
@@ -209,8 +209,8 @@ class __$$_SearchMovieCopyWithImpl<$Res> extends _$SearchEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchMovie implements _SearchMovie {
-  const _$_SearchMovie({required this.movieQuery});
+class _$SearchMovie implements SearchMovie {
+  const _$SearchMovie({required this.movieQuery});
 
   @override
   final String movieQuery;
@@ -224,7 +224,7 @@ class _$_SearchMovie implements _SearchMovie {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchMovie &&
+            other is _$SearchMovie &&
             const DeepCollectionEquality()
                 .equals(other.movieQuery, movieQuery));
   }
@@ -235,8 +235,8 @@ class _$_SearchMovie implements _SearchMovie {
 
   @JsonKey(ignore: true)
   @override
-  _$$_SearchMovieCopyWith<_$_SearchMovie> get copyWith =>
-      __$$_SearchMovieCopyWithImpl<_$_SearchMovie>(this, _$identity);
+  _$$SearchMovieCopyWith<_$SearchMovie> get copyWith =>
+      __$$SearchMovieCopyWithImpl<_$SearchMovie>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -273,7 +273,7 @@ class _$_SearchMovie implements _SearchMovie {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initialize value) initialize,
-    required TResult Function(_SearchMovie value) searchMovie,
+    required TResult Function(SearchMovie value) searchMovie,
   }) {
     return searchMovie(this);
   }
@@ -282,7 +282,7 @@ class _$_SearchMovie implements _SearchMovie {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(SearchMovie value)? searchMovie,
   }) {
     return searchMovie?.call(this);
   }
@@ -291,7 +291,7 @@ class _$_SearchMovie implements _SearchMovie {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initialize value)? initialize,
-    TResult Function(_SearchMovie value)? searchMovie,
+    TResult Function(SearchMovie value)? searchMovie,
     required TResult orElse(),
   }) {
     if (searchMovie != null) {
@@ -301,13 +301,12 @@ class _$_SearchMovie implements _SearchMovie {
   }
 }
 
-abstract class _SearchMovie implements SearchEvent {
-  const factory _SearchMovie({required final String movieQuery}) =
-      _$_SearchMovie;
+abstract class SearchMovie implements SearchEvent {
+  const factory SearchMovie({required final String movieQuery}) = _$SearchMovie;
 
   String get movieQuery => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$$_SearchMovieCopyWith<_$_SearchMovie> get copyWith =>
+  _$$SearchMovieCopyWith<_$SearchMovie> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
