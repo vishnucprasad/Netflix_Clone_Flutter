@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix_clone/application/fast_laugh/fastlaugh_bloc.dart';
 import 'package:netflix_clone/core/colors.dart';
 import 'package:netflix_clone/core/constants.dart';
@@ -76,9 +77,36 @@ class VideoListItem extends StatelessWidget {
                               '$imageAppendUrl$posterPath',
                             ),
                     ),
-                    const VideoActionsWidget(
-                      icon: Icons.emoji_emotions,
-                      title: 'Lol',
+                    ValueListenableBuilder(
+                      valueListenable: likedVideosIdsNotifier,
+                      builder:
+                          (BuildContext ctx, Set<int> newLikedList, Widget? _) {
+                        if (newLikedList.contains(index)) {
+                          return GestureDetector(
+                            onTap: () {
+                              BlocProvider.of<FastlaughBloc>(context).add(
+                                UnLikeVideo(id: index),
+                              );
+                            },
+                            child: const VideoActionsWidget(
+                              icon: Icons.emoji_emotions,
+                              title: 'Lol',
+                            ),
+                          );
+                        }
+
+                        return GestureDetector(
+                          onTap: () {
+                            BlocProvider.of<FastlaughBloc>(context).add(
+                              LikeVideo(id: index),
+                            );
+                          },
+                          child: const VideoActionsWidget(
+                            icon: Icons.emoji_emotions_outlined,
+                            title: 'Lol',
+                          ),
+                        );
+                      },
                     ),
                     const VideoActionsWidget(
                       icon: Icons.add,
@@ -168,6 +196,7 @@ class _FastLaughVideoPlayerState extends State<FastLaughVideoPlayer> {
     _videoPlayerController.initialize().then((value) {
       setState(() {});
       _videoPlayerController.play();
+      _videoPlayerController.setLooping(true);
     });
     super.initState();
   }
